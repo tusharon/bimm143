@@ -1,4 +1,11 @@
-# Class 05 R graphics intro
+# #' ---
+#' title: "Class05 Introduction to R Graphics"
+#' author: "Sharon Tu"
+#' date: "February 12, 2019"
+#' output: github_document
+#' ---
+#' 
+#' Class 05 R graphics intro
 
 # My first boxplot
 x <- rnorm(1000, 0)
@@ -6,7 +13,7 @@ boxplot(x)
 
 summary(x)
 hist(x)
-?boxplot
+
 
 boxplot(x, horizontal = TRUE)
 
