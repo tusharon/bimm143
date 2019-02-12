@@ -1,0 +1,1192 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={class05.R},
+            pdfauthor={Sharon},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{class05.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Sharon}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Tue Jan 22 12:04:28 2019}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Class 05 R graphics intro}
+
+\CommentTok{# My first boxplot}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -2.790252 -0.676883 -0.036654  0.003432  0.634904  3.394268
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?boxplot}
+
+\KeywordTok{boxplot}\NormalTok{(x, }\DataTypeTok{horizontal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \CommentTok{# Hands on session 2}
+\NormalTok{weight <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"bimm143_05_rstats/weight_chart.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(weight[,}\DecValTok{1}\NormalTok{], weight[,}\DecValTok{2}\NormalTok{], }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(weight}\OperatorTok{$}\NormalTok{Age, weight}\OperatorTok{$}\NormalTok{Weight, }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"some main title"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{15}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{), }
+     \DataTypeTok{lwd=}\DecValTok{3}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Try a barplot}
+\KeywordTok{barplot}\NormalTok{(VADeaths, }\DataTypeTok{beside =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(VADeaths, }\DataTypeTok{beside =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Input our feature count data}
+\NormalTok{mouse <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"bimm143_05_rstats/feature_counts.txt"}\NormalTok{, }\DataTypeTok{header=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{5.1}\NormalTok{, }\FloatTok{11.1}\NormalTok{, }\FloatTok{4.1}\NormalTok{, }\FloatTok{2.1}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(mouse}\OperatorTok{$}\NormalTok{Count, }\DataTypeTok{horiz =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{names.arg =}\NormalTok{ mouse}\OperatorTok{$}\NormalTok{Feature, }\DataTypeTok{las=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{heat.colors}\NormalTok{(}\DecValTok{11}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## section 3A}
+\NormalTok{malefemale <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"bimm143_05_rstats/male_female_counts.txt"}\NormalTok{, }\DataTypeTok{header=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{8.1}\NormalTok{, }\FloatTok{6.1}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{3.1}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(malefemale}\OperatorTok{$}\NormalTok{Count, }\DataTypeTok{horiz=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{names.arg =}\NormalTok{ malefemale}\OperatorTok{$}\NormalTok{Sample, }
+        \DataTypeTok{las=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{rainbow}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-9.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(malefemale}\OperatorTok{$}\NormalTok{Count, }\DataTypeTok{horiz=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{names.arg =}\NormalTok{ malefemale}\OperatorTok{$}\NormalTok{Sample, }
+        \DataTypeTok{las=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-10.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 3B}
+\NormalTok{genes <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{(}\StringTok{"bimm143_05_rstats/up_down_expression.txt"}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(genes}\OperatorTok{$}\NormalTok{State)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##       down unchanging         up 
+##         72       4997        127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(genes}\OperatorTok{$}\NormalTok{Condition1, genes}\OperatorTok{$}\NormalTok{Condition2, }\DataTypeTok{col=}\NormalTok{genes}\OperatorTok{$}\NormalTok{State, }
+     \DataTypeTok{xlab =} \StringTok{"Expression condition 1"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Expression condition 2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-11.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#expression data}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"bimm143_05_rstats/up_down_expression.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# how many genes?}
+\KeywordTok{nrow}\NormalTok{(e)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5196
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# how many up, down, all around?}
+\NormalTok{e}\OperatorTok{$}\NormalTok{State}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    [1] unchanging unchanging unchanging unchanging unchanging unchanging
+##    [7] unchanging unchanging unchanging up         up         unchanging
+##   [13] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [19] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [25] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [31] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [37] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [43] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [49] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [55] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [61] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [67] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [73] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [79] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [85] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [91] unchanging unchanging unchanging unchanging unchanging unchanging
+##   [97] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [103] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [109] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [115] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [121] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [127] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [133] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [139] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [145] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [151] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [157] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [163] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [169] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [175] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [181] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [187] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [193] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [199] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [205] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [211] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [217] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [223] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [229] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [235] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [241] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [247] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [253] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [259] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [265] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [271] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [277] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [283] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [289] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [295] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [301] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [307] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [313] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [319] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [325] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [331] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [337] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [343] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [349] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [355] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [361] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [367] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [373] unchanging unchanging unchanging unchanging unchanging down      
+##  [379] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [385] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [391] unchanging unchanging unchanging unchanging unchanging down      
+##  [397] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [403] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [409] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [415] unchanging unchanging unchanging unchanging unchanging up        
+##  [421] up         unchanging unchanging unchanging unchanging unchanging
+##  [427] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [433] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [439] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [445] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [451] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [457] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [463] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [469] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [475] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [481] unchanging unchanging unchanging down       unchanging unchanging
+##  [487] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [493] unchanging unchanging unchanging up         unchanging unchanging
+##  [499] unchanging up         unchanging unchanging up         unchanging
+##  [505] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [511] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [517] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [523] unchanging down       up         unchanging unchanging unchanging
+##  [529] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [535] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [541] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [547] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [553] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [559] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [565] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [571] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [577] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [583] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [589] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [595] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [601] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [607] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [613] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [619] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [625] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [631] unchanging down       unchanging unchanging unchanging unchanging
+##  [637] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [643] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [649] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [655] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [661] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [667] down       down       unchanging unchanging unchanging unchanging
+##  [673] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [679] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [685] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [691] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [697] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [703] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [709] unchanging unchanging unchanging unchanging up         unchanging
+##  [715] unchanging unchanging unchanging down       unchanging unchanging
+##  [721] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [727] unchanging unchanging unchanging unchanging unchanging down      
+##  [733] up         unchanging unchanging up         unchanging unchanging
+##  [739] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [745] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [751] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [757] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [763] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [769] unchanging down       unchanging unchanging unchanging unchanging
+##  [775] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [781] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [787] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [793] unchanging unchanging down       unchanging unchanging unchanging
+##  [799] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [805] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [811] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [817] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [823] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [829] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [835] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [841] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [847] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [853] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [859] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [865] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [871] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [877] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [883] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [889] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [895] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [901] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [907] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [913] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [919] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [925] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [931] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [937] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [943] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [949] up         unchanging unchanging unchanging unchanging unchanging
+##  [955] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [961] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [967] unchanging unchanging unchanging up         unchanging unchanging
+##  [973] unchanging unchanging unchanging down       unchanging unchanging
+##  [979] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [985] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [991] unchanging unchanging unchanging unchanging unchanging unchanging
+##  [997] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1003] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1009] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1015] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1021] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1027] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1033] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1039] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1045] unchanging unchanging down       unchanging unchanging up        
+## [1051] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1057] up         unchanging unchanging unchanging unchanging up        
+## [1063] unchanging unchanging unchanging unchanging up         up        
+## [1069] unchanging unchanging down       unchanging unchanging unchanging
+## [1075] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1081] down       unchanging unchanging unchanging unchanging unchanging
+## [1087] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1093] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1099] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1105] unchanging unchanging unchanging down       unchanging unchanging
+## [1111] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1117] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1123] unchanging unchanging unchanging unchanging down       unchanging
+## [1129] unchanging unchanging unchanging unchanging unchanging up        
+## [1135] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1141] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1147] unchanging unchanging unchanging down       up         down      
+## [1153] down       unchanging unchanging down       unchanging up        
+## [1159] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1165] unchanging unchanging unchanging up         unchanging unchanging
+## [1171] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1177] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1183] up         unchanging unchanging up         unchanging unchanging
+## [1189] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1195] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1201] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1207] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1213] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1219] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1225] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1231] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1237] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1243] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1249] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1255] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1261] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1267] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1273] unchanging up         unchanging unchanging unchanging unchanging
+## [1279] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1285] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1291] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1297] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1303] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1309] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1315] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1321] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1327] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1333] up         unchanging unchanging unchanging unchanging unchanging
+## [1339] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1345] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1351] unchanging unchanging unchanging unchanging unchanging up        
+## [1357] unchanging up         unchanging unchanging unchanging unchanging
+## [1363] unchanging up         unchanging unchanging unchanging unchanging
+## [1369] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1375] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1381] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1387] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1393] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1399] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1405] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1411] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1417] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1423] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1429] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1435] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1441] unchanging down       unchanging unchanging unchanging unchanging
+## [1447] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1453] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1459] unchanging unchanging up         up         unchanging unchanging
+## [1465] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1471] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1477] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1483] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1489] unchanging unchanging unchanging up         down       unchanging
+## [1495] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1501] down       down       unchanging unchanging unchanging unchanging
+## [1507] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1513] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1519] unchanging unchanging unchanging unchanging up         unchanging
+## [1525] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1531] unchanging unchanging unchanging unchanging unchanging up        
+## [1537] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1543] unchanging unchanging unchanging up         unchanging unchanging
+## [1549] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1555] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1561] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1567] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1573] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1579] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1585] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1591] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1597] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1603] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1609] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1615] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1621] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1627] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1633] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1639] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1645] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1651] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1657] unchanging unchanging up         unchanging up         unchanging
+## [1663] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1669] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1675] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1681] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1687] unchanging unchanging unchanging unchanging up         unchanging
+## [1693] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1699] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1705] up         unchanging unchanging unchanging unchanging unchanging
+## [1711] unchanging up         unchanging unchanging unchanging unchanging
+## [1717] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1723] down       unchanging unchanging unchanging unchanging unchanging
+## [1729] unchanging unchanging up         unchanging unchanging unchanging
+## [1735] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1741] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1747] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1753] unchanging up         unchanging unchanging unchanging unchanging
+## [1759] down       down       unchanging unchanging down       unchanging
+## [1765] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1771] unchanging up         unchanging unchanging unchanging unchanging
+## [1777] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1783] unchanging unchanging unchanging unchanging unchanging up        
+## [1789] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1795] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1801] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1807] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1813] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1819] up         unchanging up         up         unchanging unchanging
+## [1825] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1831] unchanging unchanging unchanging up         unchanging unchanging
+## [1837] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1843] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1849] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1855] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1861] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1867] unchanging unchanging up         unchanging unchanging unchanging
+## [1873] unchanging unchanging up         unchanging unchanging unchanging
+## [1879] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1885] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1891] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1897] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1903] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1909] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1915] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1921] unchanging up         unchanging unchanging up         up        
+## [1927] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1933] unchanging unchanging unchanging up         unchanging unchanging
+## [1939] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1945] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1951] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1957] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1963] unchanging unchanging unchanging unchanging unchanging up        
+## [1969] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1975] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1981] up         unchanging unchanging unchanging unchanging unchanging
+## [1987] unchanging unchanging unchanging unchanging unchanging unchanging
+## [1993] unchanging unchanging down       up         up         unchanging
+## [1999] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2005] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2011] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2017] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2023] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2029] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2035] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2041] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2047] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2053] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2059] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2065] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2071] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2077] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2083] unchanging unchanging unchanging up         unchanging unchanging
+## [2089] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2095] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2101] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2107] unchanging unchanging unchanging unchanging up         unchanging
+## [2113] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2119] unchanging unchanging unchanging unchanging unchanging up        
+## [2125] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2131] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2137] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2143] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2149] unchanging unchanging unchanging unchanging unchanging up        
+## [2155] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2161] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2167] unchanging unchanging unchanging unchanging up         up        
+## [2173] unchanging unchanging unchanging unchanging down       unchanging
+## [2179] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2185] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2191] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2197] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2203] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2209] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2215] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2221] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2227] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2233] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2239] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2245] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2251] up         unchanging up         unchanging unchanging unchanging
+## [2257] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2263] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2269] unchanging unchanging unchanging unchanging down       unchanging
+## [2275] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2281] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2287] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2293] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2299] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2305] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2311] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2317] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2323] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2329] unchanging down       up         up         unchanging unchanging
+## [2335] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2341] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2347] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2353] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2359] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2365] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2371] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2377] unchanging unchanging unchanging unchanging down       unchanging
+## [2383] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2389] unchanging unchanging up         unchanging unchanging unchanging
+## [2395] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2401] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2407] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2413] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2419] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2425] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2431] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2437] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2443] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2449] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2455] unchanging unchanging up         unchanging unchanging unchanging
+## [2461] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2467] unchanging unchanging unchanging unchanging up         up        
+## [2473] unchanging unchanging up         down       unchanging unchanging
+## [2479] unchanging up         unchanging unchanging unchanging unchanging
+## [2485] up         unchanging unchanging unchanging unchanging unchanging
+## [2491] unchanging up         unchanging unchanging unchanging unchanging
+## [2497] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2503] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2509] unchanging unchanging unchanging unchanging down       unchanging
+## [2515] unchanging unchanging unchanging unchanging down       unchanging
+## [2521] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2527] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2533] unchanging unchanging unchanging unchanging up         unchanging
+## [2539] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2545] unchanging unchanging down       unchanging unchanging unchanging
+## [2551] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2557] unchanging unchanging down       unchanging unchanging unchanging
+## [2563] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2569] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2575] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2581] down       unchanging unchanging unchanging unchanging unchanging
+## [2587] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2593] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2599] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2605] up         unchanging unchanging unchanging unchanging unchanging
+## [2611] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2617] unchanging up         unchanging unchanging unchanging unchanging
+## [2623] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2629] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2635] up         unchanging unchanging unchanging unchanging unchanging
+## [2641] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2647] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2653] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2659] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2665] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2671] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2677] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2683] unchanging up         unchanging unchanging unchanging unchanging
+## [2689] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2695] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2701] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2707] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2713] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2719] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2725] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2731] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2737] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2743] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2749] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2755] down       unchanging unchanging unchanging unchanging unchanging
+## [2761] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2767] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2773] down       unchanging unchanging down       unchanging unchanging
+## [2779] unchanging unchanging unchanging unchanging up         unchanging
+## [2785] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2791] unchanging unchanging unchanging unchanging unchanging up        
+## [2797] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2803] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2809] up         unchanging down       unchanging unchanging unchanging
+## [2815] unchanging unchanging unchanging down       unchanging up        
+## [2821] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2827] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2833] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2839] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2845] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2851] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2857] unchanging unchanging up         unchanging unchanging unchanging
+## [2863] unchanging unchanging unchanging unchanging unchanging up        
+## [2869] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2875] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2881] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2887] unchanging down       unchanging unchanging unchanging unchanging
+## [2893] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2899] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2905] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2911] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2917] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2923] unchanging up         down       unchanging unchanging unchanging
+## [2929] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2935] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2941] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2947] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2953] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2959] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2965] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2971] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2977] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2983] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2989] unchanging unchanging unchanging unchanging unchanging unchanging
+## [2995] unchanging unchanging unchanging down       unchanging unchanging
+## [3001] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3007] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3013] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3019] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3025] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3031] unchanging unchanging unchanging down       unchanging unchanging
+## [3037] unchanging unchanging up         unchanging unchanging unchanging
+## [3043] down       unchanging unchanging unchanging unchanging unchanging
+## [3049] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3055] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3061] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3067] unchanging unchanging up         unchanging unchanging unchanging
+## [3073] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3079] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3085] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3091] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3097] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3103] unchanging unchanging unchanging unchanging down       unchanging
+## [3109] up         unchanging unchanging unchanging unchanging unchanging
+## [3115] up         unchanging unchanging unchanging unchanging unchanging
+## [3121] unchanging unchanging up         unchanging unchanging unchanging
+## [3127] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3133] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3139] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3145] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3151] unchanging unchanging unchanging unchanging unchanging down      
+## [3157] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3163] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3169] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3175] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3181] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3187] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3193] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3199] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3205] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3211] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3217] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3223] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3229] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3235] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3241] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3247] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3253] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3259] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3265] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3271] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3277] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3283] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3289] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3295] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3301] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3307] unchanging unchanging unchanging unchanging down       unchanging
+## [3313] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3319] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3325] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3331] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3337] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3343] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3349] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3355] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3361] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3367] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3373] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3379] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3385] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3391] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3397] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3403] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3409] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3415] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3421] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3427] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3433] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3439] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3445] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3451] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3457] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3463] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3469] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3475] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3481] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3487] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3493] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3499] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3505] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3511] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3517] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3523] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3529] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3535] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3541] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3547] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3553] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3559] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3565] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3571] unchanging unchanging unchanging unchanging up         unchanging
+## [3577] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3583] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3589] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3595] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3601] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3607] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3613] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3619] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3625] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3631] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3637] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3643] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3649] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3655] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3661] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3667] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3673] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3679] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3685] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3691] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3697] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3703] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3709] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3715] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3721] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3727] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3733] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3739] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3745] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3751] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3757] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3763] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3769] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3775] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3781] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3787] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3793] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3799] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3805] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3811] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3817] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3823] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3829] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3835] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3841] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3847] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3853] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3859] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3865] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3871] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3877] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3883] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3889] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3895] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3901] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3907] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3913] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3919] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3925] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3931] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3937] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3943] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3949] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3955] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3961] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3967] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3973] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3979] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3985] unchanging unchanging unchanging unchanging unchanging up        
+## [3991] unchanging unchanging unchanging unchanging unchanging unchanging
+## [3997] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4003] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4009] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4015] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4021] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4027] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4033] unchanging up         unchanging unchanging unchanging unchanging
+## [4039] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4045] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4051] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4057] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4063] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4069] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4075] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4081] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4087] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4093] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4099] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4105] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4111] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4117] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4123] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4129] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4135] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4141] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4147] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4153] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4159] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4165] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4171] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4177] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4183] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4189] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4195] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4201] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4207] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4213] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4219] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4225] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4231] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4237] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4243] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4249] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4255] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4261] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4267] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4273] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4279] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4285] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4291] unchanging up         unchanging unchanging unchanging unchanging
+## [4297] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4303] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4309] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4315] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4321] unchanging unchanging unchanging unchanging up         unchanging
+## [4327] unchanging unchanging unchanging down       unchanging unchanging
+## [4333] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4339] up         up         unchanging unchanging unchanging up        
+## [4345] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4351] unchanging unchanging unchanging unchanging down       unchanging
+## [4357] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4363] down       down       unchanging unchanging unchanging unchanging
+## [4369] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4375] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4381] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4387] unchanging unchanging up         unchanging unchanging unchanging
+## [4393] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4399] unchanging unchanging up         unchanging unchanging unchanging
+## [4405] unchanging unchanging unchanging unchanging unchanging up        
+## [4411] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4417] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4423] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4429] unchanging up         unchanging unchanging unchanging unchanging
+## [4435] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4441] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4447] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4453] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4459] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4465] unchanging unchanging unchanging unchanging down       unchanging
+## [4471] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4477] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4483] up         unchanging unchanging unchanging unchanging unchanging
+## [4489] unchanging up         unchanging unchanging down       unchanging
+## [4495] unchanging unchanging unchanging unchanging unchanging up        
+## [4501] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4507] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4513] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4519] down       unchanging unchanging unchanging unchanging unchanging
+## [4525] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4531] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4537] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4543] unchanging up         unchanging down       unchanging unchanging
+## [4549] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4555] unchanging unchanging up         unchanging unchanging unchanging
+## [4561] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4567] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4573] unchanging unchanging unchanging unchanging unchanging up        
+## [4579] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4585] unchanging unchanging unchanging unchanging down       unchanging
+## [4591] unchanging unchanging up         unchanging unchanging unchanging
+## [4597] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4603] unchanging unchanging unchanging unchanging unchanging down      
+## [4609] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4615] unchanging unchanging unchanging unchanging down       unchanging
+## [4621] unchanging unchanging unchanging up         up         unchanging
+## [4627] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4633] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4639] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4645] unchanging unchanging unchanging unchanging unchanging up        
+## [4651] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4657] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4663] up         unchanging unchanging unchanging unchanging unchanging
+## [4669] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4675] unchanging unchanging up         unchanging unchanging unchanging
+## [4681] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4687] unchanging unchanging unchanging unchanging down       down      
+## [4693] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4699] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4705] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4711] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4717] unchanging unchanging up         unchanging down       unchanging
+## [4723] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4729] unchanging unchanging unchanging up         unchanging unchanging
+## [4735] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4741] unchanging up         unchanging unchanging unchanging unchanging
+## [4747] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4753] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4759] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4765] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4771] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4777] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4783] unchanging unchanging unchanging unchanging unchanging down      
+## [4789] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4795] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4801] up         unchanging unchanging unchanging unchanging unchanging
+## [4807] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4813] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4819] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4825] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4831] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4837] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4843] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4849] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4855] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4861] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4867] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4873] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4879] unchanging up         unchanging unchanging unchanging unchanging
+## [4885] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4891] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4897] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4903] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4909] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4915] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4921] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4927] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4933] unchanging unchanging unchanging down       unchanging unchanging
+## [4939] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4945] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4951] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4957] unchanging down       unchanging up         up         unchanging
+## [4963] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4969] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4975] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4981] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4987] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4993] unchanging unchanging unchanging unchanging unchanging unchanging
+## [4999] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5005] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5011] unchanging down       unchanging unchanging down       unchanging
+## [5017] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5023] unchanging unchanging unchanging unchanging up         unchanging
+## [5029] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5035] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5041] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5047] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5053] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5059] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5065] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5071] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5077] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5083] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5089] unchanging unchanging unchanging up         unchanging unchanging
+## [5095] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5101] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5107] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5113] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5119] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5125] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5131] unchanging unchanging unchanging unchanging unchanging up        
+## [5137] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5143] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5149] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5155] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5161] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5167] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5173] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5179] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5185] unchanging unchanging unchanging unchanging unchanging unchanging
+## [5191] unchanging unchanging unchanging unchanging unchanging unchanging
+## Levels: down unchanging up
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(e}\OperatorTok{$}\NormalTok{State)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##       down unchanging         up 
+##         72       4997        127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(e}\OperatorTok{$}\NormalTok{Condition1, e}\OperatorTok{$}\NormalTok{Condition2, }\DataTypeTok{col=}\NormalTok{e}\OperatorTok{$}\NormalTok{State)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-12.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#play}
+\KeywordTok{palette}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"lightgray"}\NormalTok{, }\StringTok{"blue"}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(e}\OperatorTok{$}\NormalTok{Condition1, e}\OperatorTok{$}\NormalTok{Condition2, }\DataTypeTok{col=}\NormalTok{e}\OperatorTok{$}\NormalTok{State)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{class05_files/figure-latex/unnamed-chunk-1-13.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#3C}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
