@@ -1,0 +1,102 @@
+---
+title: "Class 14: Genome Informatics 1"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Asthma SNPs in MXL population
+
+Read file from Ensembl
+
+```{r}
+mxl <- read.csv("373531-SampleGenotypes-Homo_sapiens_Variation_Sample_rs8067378 (1).csv")
+head(mxl)
+```
+
+How many GIG genotypes are in this set?
+
+```{r}
+table(mxl$Genotype..forward.strand.)
+```
+
+```{r}
+sum(mxl$Genotype..forward.strand.=="G|G")
+```
+
+Percent values
+
+```{r}
+table(mxl$Genotype..forward.strand.) / nrow(mxl) * 100
+```
+
+## RNA-Seq
+
+Fastq quality scores
+
+Q. Does the first sequence have good quality?
+
+```{r}
+#install.packages("seqinr")
+#install.packages("gtools")
+library(seqinr)
+library(gtools)
+q <- "DDDDCDEDCDDDDBBDDDCC@"
+asc(s2c(q)) - 33
+```
+
+
+## Population scale analysis
+
+Does the genotype for rs9067378 influence the expression of the important asthma linked genes we found?
+
+```{r}
+geno <- read.table("rs8067378_ENSG00000172057.6.txt")
+head(geno)
+```
+
+```{r}
+table(geno$geno)
+```
+
+```{r}
+inds <- geno$geno == "G/G"
+summary(geno$exp[inds])
+```
+
+```{r}
+inds.aa <- geno$geno == "A/A"
+summary(geno$exp[inds.aa])
+```
+
+```{r}
+inds.ag <- geno$geno == "A/G"
+summary(geno$exp[inds.ag])
+```
+
+Some nice figure that shows the distribution of these expression value...?
+
+```{r}
+boxplot(exp ~ geno, geno)
+```
+
+```{r}
+# Generate a boxplot for expression data of different genotype groups
+p <- boxplot(exp~geno, data=expr, xlab="rs8067378 genotype", ylab="ENSG00000172057.4 (RPKM)", notch=T)
+```
+
+
+```{r}
+## Histogram of the exp column with ggplot2
+ggplot(expr, aes(exp, fill = geno)) + geom_density(alpha = 0.2)
+```
+
+```{r}
+# Boxplot with the data shown
+ggplot(expr, aes(geno, exp, fill=geno)) + 
+  geom_boxplot(notch=TRUE, outlier.shape = NA) + 
+  geom_jitter(shape=16, position=position_jitter(0.2), alpha=0.4)
+```
+
